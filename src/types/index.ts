@@ -1,0 +1,103 @@
+// Export all resource interfaces
+export type { IPatient } from "./resources/patient";
+export type { IEncounter } from "./resources/encounter";
+export type { IObservation } from "./resources/observation";
+export type { ICondition } from "./resources/condition";
+export type { IPractitioner } from "./resources/practitioner";
+export type { IOrganization } from "./resources/organization";
+export type { IProcedure } from "./resources/procedure";
+export type { IMedication } from "./resources/medication";
+export type { IAllergyIntolerance } from "./resources/allergyIntolerance";
+export type { IDiagnosticReport } from "./resources/diagnosticReport";
+export type { IAppointment } from "./resources/appointment";
+export type { ILocation } from "./resources/location";
+export type { ICarePlan } from "./resources/carePlan";
+export type { IBundle } from "./resources/bundle";
+export type { IMedicationRequest } from "./resources/medicationRequest";
+export type { IMedicationStatement } from "./resources/medicationStatement";
+export type { IMedicationAdministration } from "./resources/medicationAdministration";
+export type { IImmunization } from "./resources/immunization";
+export type { IGoal } from "./resources/goal";
+export type { ICareTeam } from "./resources/careTeam";
+export type { IRelatedPerson } from "./resources/relatedPerson";
+export type { IPractitionerRole } from "./resources/practitionerRole";
+export type { IDocumentReference } from "./resources/documentReference";
+export type { ISpecimen } from "./resources/specimen";
+export type { IServiceRequest } from "./resources/serviceRequest";
+export type { ITask } from "./resources/task";
+export type { IFlag } from "./resources/flag";
+export type { IList } from "./resources/list";
+export type { IGroup } from "./resources/group";
+export type { ICoverage } from "./resources/coverage";
+export type { IAccount } from "./resources/account";
+export type { IEpisodeOfCare } from "./resources/episodeOfCare";
+export type { IPerson } from "./resources/person";
+export type { IDevice } from "./resources/device";
+
+// Export all primitive interfaces and types
+export type { IResource } from "./primitives/resource";
+export type { IIdentifier } from "./primitives/identifier";
+export type { IReference } from "./primitives/reference";
+export type { ICodeableConcept } from "./primitives/codeableConceps";
+export type { ICoding } from "./primitives/coding";
+export type { IHumanName } from "./primitives/humanName";
+export type { IAddress } from "./primitives/address";
+export type { IContactPoint } from "./primitives/contactPoint";
+export type { IPeriod } from "./primitives/period";
+export type { IQuantity } from "./primitives/quantity";
+export type { IRange } from "./primitives/range";
+export type { IRatio } from "./primitives/ratio";
+export type { IAttachment } from "./primitives/attachment";
+export type { IAnnotation } from "./primitives/annotation";
+export type { ITiming } from "./primitives/timing";
+export type { ISignature } from "./primitives/signature";
+export type { IAge } from "./primitives/age";
+export type { IDuration } from "./primitives/duration";
+export type { IMeta } from "./primitives/meta";
+export type { IDosage } from "./primitives/dosage";
+
+// Export all enums
+export { EResourceType } from "./primitives/allowedResourceTypes";
+export { EBundleType } from "./primitives/bundleType";
+export { EObservationStatus } from "./primitives/observationStatus";
+export { EEncounterStatus } from "./primitives/encounterStatus";
+export { EConditionStatus } from "./primitives/conditionStatus";
+export { EProcedureStatus } from "./primitives/procedureStatus";
+export { EMedicationStatus } from "./primitives/medicationStatus";
+export { EAllergyIntoleranceStatus } from "./primitives/allergyIntoleranceStatus";
+export { EDiagnosticReportStatus } from "./primitives/diagnosticReportStatus";
+export { EAppointmentStatus } from "./primitives/appointmentStatus";
+export { ECarePlanStatus } from "./primitives/carePlanStatus";
+export { EGoalStatus } from "./primitives/goalStatus";
+export { ECareTeamStatus } from "./primitives/careTeamStatus";
+export { EDocumentReferenceStatus } from "./primitives/documentReferenceStatus";
+export { ESpecimenStatus } from "./primitives/specimenStatus";
+export { EMedicationRequestStatus } from "./primitives/medicationRequestStatus";
+export { EMedicationStatementStatus } from "./primitives/medicationStatementStatus";
+export { EMedicationAdministrationStatus } from "./primitives/medicationAdministrationStatus";
+export { EImmunizationStatus } from "./primitives/immunizationStatus";
+export { EServiceRequestStatus } from "./primitives/serviceRequestStatus";
+export { ETaskStatus } from "./primitives/taskStatus";
+export { EFlagStatus } from "./primitives/flagStatus";
+export { EListStatus } from "./primitives/listStatus";
+export { EGroupType } from "./primitives/groupType";
+export { ECoverageStatus } from "./primitives/coverageStatus";
+export { EAccountStatus } from "./primitives/accountStatus";
+export { EEpisodeOfCareStatus } from "./primitives/episodeOfCareStatus";
+export { EDeviceStatus } from "./primitives/deviceStatus";
+export { EGender } from "./primitives/gender";
+
+// Export all type aliases
+export type { TResourceType } from "./primitives/allowedResourceTypes";
+export type { TBundleType } from "./primitives/bundleType";
+export type { TObservationStatus } from "./primitives/observationStatus";
+export type { TEncounterStatus } from "./primitives/encounterStatus";
+export type { TConditionStatus } from "./primitives/conditionStatus";
+export type { TProcedureStatus } from "./primitives/procedureStatus";
+export type { TMedicationStatus } from "./primitives/medicationStatus";
+export type { TGender } from "./primitives/gender";
+export type { TDate } from "./primitives/date";
+export type { TDateTime } from "./primitives/dateTime";
+export type { TInstant } from "./primitives/instant";
+
+

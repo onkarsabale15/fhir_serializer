@@ -1,0 +1,62 @@
+import { EResourceType } from "../primitives/allowedResourceTypes";
+import { ICodeableConcept } from "../primitives/codeableConceps";
+import { IIdentifier } from "../primitives/identifier";
+import { IReference } from "../primitives/reference";
+import { IResource } from "../primitives/resource";
+import { TObservationStatus } from "../primitives/observationStatus";
+import { IQuantity } from "../primitives/quantity";
+import { IRange } from "../primitives/range";
+import { IRatio } from "../primitives/ratio";
+import { ISampledData } from "../primitives/sampledData";
+import { IAttachment } from "../primitives/attachment";
+import { TDateTime } from "../primitives/dateTime";
+import { TDate } from "../primitives/date";
+import { IPeriod } from "../primitives/period";
+import { IObservationComponent } from "../primitives/observationComponent";
+import { IAnnotation } from "../primitives/annotation";
+import { IObservationReferenceRange } from "../primitives/observationReferenceRange";
+import { ITiming } from "../primitives/timing";
+import { TInstant } from "../primitives/instant";
+
+interface IObservation extends IResource<EResourceType.OBSERVATION> {
+    identifier?: IIdentifier[];
+    basedOn?: IReference<EResourceType.CARE_PLAN | EResourceType.DEVICE_REQUEST | EResourceType.IMMUNIZATION_RECOMMENDATION | EResourceType.MEDICATION_REQUEST | EResourceType.NUTRITION_ORDER | EResourceType.SERVICE_REQUEST>[];
+    partOf?: IReference<EResourceType.MEDICATION_ADMINISTRATION | EResourceType.MEDICATION_DISPENSE | EResourceType.MEDICATION_STATEMENT | EResourceType.PROCEDURE | EResourceType.IMMUNIZATION | EResourceType.IMAGING_STUDY>[];
+    status: TObservationStatus;
+    category?: ICodeableConcept[];
+    code: ICodeableConcept;
+    subject?: IReference<EResourceType.PATIENT | EResourceType.GROUP | EResourceType.DEVICE | EResourceType.LOCATION>;
+    focus?: IReference[];
+    encounter?: IReference<EResourceType.ENCOUNTER>;
+    effectiveDateTime?: TDateTime;
+    effectivePeriod?: IPeriod;
+    effectiveTiming?: ITiming;
+    effectiveInstant?: TInstant;
+    issued?: TInstant;
+    performer?: IReference<EResourceType.PRACTITIONER | EResourceType.PRACTITIONER_ROLE | EResourceType.ORGANIZATION | EResourceType.CARE_TEAM | EResourceType.PATIENT | EResourceType.RELATED_PERSON>[];
+    valueQuantity?: IQuantity;
+    valueCodeableConcept?: ICodeableConcept;
+    valueString?: string;
+    valueBoolean?: boolean;
+    valueInteger?: number;
+    valueRange?: IRange;
+    valueRatio?: IRatio;
+    valueSampledData?: ISampledData;
+    valueTime?: string;
+    valueDateTime?: TDateTime;
+    valuePeriod?: IPeriod;
+    dataAbsentReason?: ICodeableConcept;
+    interpretation?: ICodeableConcept[];
+    note?: IAnnotation[];
+    bodySite?: ICodeableConcept;
+    method?: ICodeableConcept;
+    specimen?: IReference<EResourceType.SPECIMEN>;
+    device?: IReference<EResourceType.DEVICE | EResourceType.DEVICE_METRIC>;
+    referenceRange?: IObservationReferenceRange[];
+    hasMember?: IReference<EResourceType.OBSERVATION | EResourceType.QUESTIONNAIRE_RESPONSE | EResourceType.MOLECULAR_SEQUENCE>[];
+    derivedFrom?: IReference<EResourceType.DOCUMENT_REFERENCE | EResourceType.IMAGING_STUDY | EResourceType.MEDIA | EResourceType.QUESTIONNAIRE_RESPONSE | EResourceType.OBSERVATION | EResourceType.MOLECULAR_SEQUENCE>[];
+    component?: IObservationComponent[];
+}
+
+export type { IObservation };
+

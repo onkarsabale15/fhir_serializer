@@ -1,0 +1,36 @@
+{
+  "name": "@fhir-r4/types",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for FHIR R4 resources",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "fhir",
+    "fhir-r4",
+    "hl7",
+    "healthcare",
+    "typescript",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsup src/types/index.ts --format cjs,esm --dts --outDir dist && node -e \"const fs=require('fs');const pkg=require('./package.json');const distPkg={...pkg,main:'index.js',module:'index.mjs',types:'index.d.ts',exports:{'.':{'types':'./index.d.ts','import':'./index.mjs','require':'./index.js'}},files:undefined,scripts:undefined,devDependencies:undefined};fs.writeFileSync('./dist/package.json',JSON.stringify(distPkg,null,2))\"",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}

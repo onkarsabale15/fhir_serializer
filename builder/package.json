@@ -1,0 +1,37 @@
+{
+  "name": "@fhir-r4/builder",
+  "version": "1.0.0",
+  "description": "Builder classes for building valid FHIR R4 resources in JavaScript/TypeScript with full IntelliSense support",
+  "main": "dist/builder/index.js",
+  "module": "dist/builder/index.mjs",
+  "types": "dist/builder/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/builder/index.d.ts",
+      "import": "./dist/builder/index.mjs",
+      "require": "./dist/builder/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "fhir",
+    "fhir-r4",
+    "hl7",
+    "healthcare",
+    "typescript",
+    "builder",
+    "classes"
+  ],
+  "scripts": {
+    "build": "tsup ../src/builder/index.ts ../src/classes/*.ts --format cjs,esm --dts --outDir dist --external @fhir-r4/types && node -e \"const fs=require('fs');const pkg=require('./package.json');const distPkg={...pkg,main:'builder/index.js',module:'builder/index.mjs',types:'builder/index.d.ts',exports:{'.':{'types':'./builder/index.d.ts','import':'./builder/index.mjs','require':'./builder/index.js'}},files:undefined,scripts:undefined,devDependencies:undefined};fs.writeFileSync('./dist/package.json',JSON.stringify(distPkg,null,2))\"",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}

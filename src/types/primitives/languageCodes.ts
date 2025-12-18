@@ -1,0 +1,67 @@
+/**
+ * https://hl7.org/fhir/R4/valueset-languages.html
+ */
+
+enum ELanguage {
+    ARABIC="ar",
+    BENGALI="bn",
+    CZECH="cs",
+    DANISH="da",
+    GERMAN="de",
+    GERMAN_AUSTRIA="de-AT",
+    GERMAN_SWITZERLAND="de-CH",
+    GERMAN_GERMANY="de-DE",
+    GREEK="el",
+    ENGLISH="en",
+    ENGLISH_AUSTRALIA="en-AU",
+    ENGLISH_CANADA="en-CA",
+    ENGLISH_GREAT_BRITAIN="en-GB",
+    ENGLISH_INDIA="en-IN",
+    ENGLISH_NEW_ZEALAND="en-NZ",
+    ENGLISH_SINGAPORE="en-SG",
+    ENGLISH_UNITED_STATES="en-US",
+    SPANISH="es",
+    SPANISH_ARGENTINA="es-AR",
+    SPANISH_SPAIN="es-ES",
+    SPANISH_URUGUAY="es-UY",
+    FINNISH="fi",
+    FRENCH="fr",
+    FRENCH_BELGIUM="fr-BE",
+    FRENCH_SWITZERLAND="fr-CH",
+    FRENCH_FRANCE="fr-FR",
+    FRENCH_FRENCH="fy",
+    FRENCH_FRENCH_NETHERLANDS="fy-NL",
+    HINDI="hi",
+    CROATIAN="hr",
+    ITALIAN="it",
+    ITALIAN_SWITZERLAND="it-CH",
+    ITALIAN_ITALY="it-IT",
+    JAPANESE="ja",
+    KOREAN="ko",
+    DUTCH="nl",
+    DUTCH_BELGIUM="nl-BE",
+    DUTCH_NETHERLANDS="nl-NL",
+    NORWEGIAN="no",
+    NORWEGIAN_NORWAY="no-NO",
+    PUNJABI="pa",
+    POLISH="pl",
+    PORTUGUESE="pt",
+    PORTUGUESE_BRAZIL="pt-BR",
+    RUSSIAN="ru",
+    RUSSIAN_RUSSIA="ru-RU",
+    SERBIAN="sr",
+    SERBIAN_SERBIA="sr-RS",
+    SWEDISH="sv",
+    SWEDISH_SWEDEN="sv-SE",
+    TELUGU="te",
+    CHINESE="zh",
+    CHINESE_CHINA="zh-CN",
+    CHINESE_HONG_KONG="zh-HK",
+    CHINESE_SINGAPORE="zh-SG",
+    CHINESE_TAIWAN="zh-TW"
+}
+
+type TLanguage = `${ELanguage}`;
+
+export { ELanguage };
+export type { TLanguage }
