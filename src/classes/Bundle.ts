@@ -75,8 +75,13 @@ export class Bundle extends Resource<EResourceType.BUNDLE> implements IBundle {
     constructor(type: TBundleType, data?: Partial<IBundle>) {
         super(EResourceType.BUNDLE, data);
         this.type = type;
-        if (data?.entry) {
-            this.entry = data.entry;
+        if (data) {
+            if (data.identifier) this.identifier = data.identifier;
+            if (data.timestamp) this.timestamp = data.timestamp;
+            if (data.total !== undefined) this.total = data.total;
+            if (data.link) this.link = data.link;
+            if (data.entry) this.entry = data.entry;
+            if (data.signature) this.signature = data.signature;
         }
     }
 

@@ -145,6 +145,24 @@ export class Patient extends Resource<EResourceType.PATIENT> implements IPatient
     constructor(data?: Partial<IPatient>) {
         super(EResourceType.PATIENT, data);
         this.name = data?.name || [];
+        if (data) {
+            if (data.identifier) this.identifier = data.identifier;
+            if (data.telecom) this.telecom = data.telecom;
+            if (data.gender) this.gender = data.gender;
+            if (data.birthDate) this.birthDate = data.birthDate;
+            if (data.deceasedBoolean !== undefined) this.deceasedBoolean = data.deceasedBoolean;
+            if (data.deceasedDateTime) this.deceasedDateTime = data.deceasedDateTime;
+            if (data.address) this.address = data.address;
+            if (data.maritalStatus) this.maritalStatus = data.maritalStatus;
+            if (data.multipleBirthBoolean !== undefined) this.multipleBirthBoolean = data.multipleBirthBoolean;
+            if (data.multipleBirthInteger !== undefined) this.multipleBirthInteger = data.multipleBirthInteger;
+            if (data.photo) this.photo = data.photo;
+            if (data.contact) this.contact = data.contact;
+            if (data.communication) this.communication = data.communication;
+            if (data.generalPractitioner) this.generalPractitioner = data.generalPractitioner;
+            if (data.managingOrganization) this.managingOrganization = data.managingOrganization;
+            if (data.link) this.link = data.link;
+        }
     }
 
     /**
