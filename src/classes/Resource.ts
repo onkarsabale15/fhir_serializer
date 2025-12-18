@@ -126,27 +126,42 @@ export class Resource<T extends TResourceType = TResourceType> implements IResou
         if (Array.isArray(data)) {
             return data
                 .map(item => Resource.clean(item))
-                .filter(item => 
-                    item !== undefined && 
-                    item !== null && 
-                    !(typeof item === 'object' && Object.keys(item).length === 0)
-                );
+                .filter(item => Resource.isValidValue(item));
         } else if (typeof data === 'object' && data !== null) {
             const cleanedObj: any = {};
             for (const [key, value] of Object.entries(data)) {
                 const cleanedValue = Resource.clean(value);
-                if (
-                    cleanedValue !== undefined && 
-                    cleanedValue !== null && 
-                    !(typeof cleanedValue === 'object' && !Array.isArray(cleanedValue) && Object.keys(cleanedValue).length === 0) &&
-                    !(Array.isArray(cleanedValue) && cleanedValue.length === 0)
-                ) {
+                if (Resource.isValidValue(cleanedValue) && !Resource.isEmpty(cleanedValue)) {
                     cleanedObj[key] = cleanedValue;
                 }
             }
             return Object.keys(cleanedObj).length ? cleanedObj : null;
         }
         return data;
+    }
+
+    /**
+     * Helper method to check if a value is valid (not undefined or null)
+     * @param {any} value - The value to check
+     * @returns {boolean} True if the value is valid
+     */
+    private static isValidValue(value: any): boolean {
+        return value !== undefined && value !== null;
+    }
+
+    /**
+     * Helper method to check if a value is empty (empty object or array)
+     * @param {any} value - The value to check
+     * @returns {boolean} True if the value is empty
+     */
+    private static isEmpty(value: any): boolean {
+        if (typeof value !== 'object') {
+            return false;
+        }
+        if (Array.isArray(value)) {
+            return value.length === 0;
+        }
+        return Object.keys(value).length === 0;
     }
 }
 
