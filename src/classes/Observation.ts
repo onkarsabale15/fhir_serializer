@@ -188,4 +188,22 @@ export class Observation extends Resource<EResourceType.OBSERVATION> implements 
         if (this.component) json.component = this.component;
         return json as IObservation;
     }
+
+    /**
+     * Serializes the observation by cleaning undefined/null values and empty objects/arrays
+     * @returns {IObservation} The cleaned observation as a plain object
+     */
+    serialize(): IObservation {
+        return Resource.clean(this.toJSON()) as IObservation;
+    }
+
+    /**
+     * Sets the effective date/time
+     * @param {TDateTime} effectiveDateTime - The effective date/time
+     * @returns {this} Returns this instance for method chaining
+     */
+    setEffectiveDateTime(effectiveDateTime: TDateTime): this {
+        this.effectiveDateTime = effectiveDateTime;
+        return this;
+    }
 }

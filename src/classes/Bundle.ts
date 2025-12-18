@@ -144,6 +144,14 @@ export class Bundle extends Resource<EResourceType.BUNDLE> implements IBundle {
             ...(this.signature && { signature: this.signature })
         };
     }
+
+    /**
+     * Serializes the bundle by cleaning undefined/null values and empty objects/arrays
+     * @returns {IBundle} The cleaned bundle as a plain object
+     */
+    serialize(): IBundle {
+        return Resource.clean(this.toJSON()) as IBundle;
+    }
 }
 
 

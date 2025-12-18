@@ -227,6 +227,14 @@ export class Patient extends Resource<EResourceType.PATIENT> implements IPatient
             ...(this.link && { link: this.link })
         };
     }
+
+    /**
+     * Serializes the patient by cleaning undefined/null values and empty objects/arrays
+     * @returns {IPatient} The cleaned patient as a plain object
+     */
+    serialize(): IPatient {
+        return Resource.clean(this.toJSON()) as IPatient;
+    }
 }
 
 

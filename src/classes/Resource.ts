@@ -102,11 +102,51 @@ export class Resource<T extends TResourceType = TResourceType> implements IResou
     }
 
     /**
+     * Serializes the resource by cleaning undefined/null values and empty objects/arrays
+     * @returns {IResource<T>} The cleaned resource as a plain object
+     */
+    serialize(): IResource<T> {
+        return Resource.clean(this.toJSON()) as IResource<T>;
+    }
+
+    /**
      * Validates that the resource has required fields
      * @returns {boolean} True if valid, false otherwise
      */
     validate(): boolean {
         return !!this.resourceType;
+    }
+
+    /**
+     * Static method to clean data by removing undefined, null, empty objects, and empty arrays
+     * @param {any} data - The data to clean
+     * @returns {any} The cleaned data
+     */
+    static clean(data: any): any {
+        if (Array.isArray(data)) {
+            return data
+                .map(item => Resource.clean(item))
+                .filter(item => 
+                    item !== undefined && 
+                    item !== null && 
+                    !(typeof item === 'object' && Object.keys(item).length === 0)
+                );
+        } else if (typeof data === 'object' && data !== null) {
+            const cleanedObj: any = {};
+            for (const [key, value] of Object.entries(data)) {
+                const cleanedValue = Resource.clean(value);
+                if (
+                    cleanedValue !== undefined && 
+                    cleanedValue !== null && 
+                    !(typeof cleanedValue === 'object' && !Array.isArray(cleanedValue) && Object.keys(cleanedValue).length === 0) &&
+                    !(Array.isArray(cleanedValue) && cleanedValue.length === 0)
+                ) {
+                    cleanedObj[key] = cleanedValue;
+                }
+            }
+            return Object.keys(cleanedObj).length ? cleanedObj : null;
+        }
+        return data;
     }
 }
 
