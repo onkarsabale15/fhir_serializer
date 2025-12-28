@@ -96,14 +96,44 @@ const patient = new Patient()
   .setGender('male')
   .setBirthDate('1990-01-01');
 
-// Convert to plain object
+// Convert to plain object (includes all fields)
 const patientJson = patient.toJSON();
+
+// Serialize to clean object (removes undefined/null/empty values)
+const patientClean = patient.serialize();
 
 // Validate
 if (patient.validate()) {
   console.log('Valid patient resource');
   // Send to FHIR server, etc.
 }
+```
+
+### Serialization vs toJSON
+
+The library provides two ways to convert resources to plain objects:
+
+```javascript
+import { Patient } from '@fhir-r4/builder';
+
+const patient = new Patient()
+  .setId('patient-123')
+  .addName({ given: ['John'], family: 'Doe' });
+// Note: many optional fields are not set
+
+// toJSON() - Returns all properties (including undefined ones in the object structure)
+const raw = patient.toJSON();
+
+// serialize() - Returns cleaned object with no undefined, null, or empty values
+const clean = patient.serialize();
+// This is preferred for sending to FHIR servers
+
+// Use serialize() when sending to FHIR servers or APIs
+fetch('https://fhir.example.org/Patient', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/fhir+json' },
+  body: JSON.stringify(patient.serialize())
+});
 ```
 
 ### Method Chaining
@@ -138,6 +168,56 @@ const observation = new Observation()
   });
 ```
 
+### Utility Classes
+
+The library provides utility classes to make building complex structures easier:
+
+#### CodeableConcept Builder
+
+```javascript
+import { CodeableConcept, Observation } from '@fhir-r4/builder';
+
+// Build a CodeableConcept using the helper class
+const bloodPressureCode = new CodeableConcept()
+  .addCoding({
+    system: 'http://loinc.org',
+    code: '85354-9',
+    display: 'Blood pressure panel with all children optional'
+  })
+  .addCoding({
+    system: 'http://snomed.info/sct',
+    code: '75367002',
+    display: 'Blood pressure'
+  })
+  .setText('Blood pressure');
+
+// Use it in an observation
+const observation = new Observation()
+  .setStatus('final')
+  .setCode(bloodPressureCode.serialize())
+  .setSubject({ reference: 'Patient/patient-123' });
+```
+
+### Mixins for Reusable Functionality
+
+The library uses TypeScript mixins for reusable functionality:
+
+```javascript
+import { Resource, IdentifierMixin, EResourceType } from '@fhir-r4/builder';
+
+// Create a custom resource with identifier support
+class MyCustomResource extends IdentifierMixin(Resource) {
+  constructor() {
+    super(EResourceType.PATIENT);
+  }
+}
+
+const resource = new MyCustomResource()
+  .setId('resource-123')
+  .addIdentifier({ system: 'http://example.org', value: 'ID-123' })
+  .addIdentifier({ system: 'http://other.org', value: 'ID-456' });
+```
+
 ### Bundle Example
 
 ```javascript
@@ -147,14 +227,14 @@ import { Bundle, Patient, Observation, EBundleType } from '@fhir-r4/builder';
 const bundle = new Bundle(EBundleType.COLLECTION)
   .setTimestamp('2024-01-01T12:00:00Z')
   .addEntry({
-    resource: patient.toJSON()
+    resource: patient.serialize()  // Use serialize() for clean data
   })
   .addEntry({
-    resource: observation.toJSON()
+    resource: observation.serialize()
   });
 
-// Get the bundle as JSON
-const bundleJson = bundle.toJSON();
+// Get the clean bundle without empty fields
+const bundleJson = bundle.serialize();
 ```
 
 ### Validation

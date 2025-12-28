@@ -75,8 +75,13 @@ export class Bundle extends Resource<EResourceType.BUNDLE> implements IBundle {
     constructor(type: TBundleType, data?: Partial<IBundle>) {
         super(EResourceType.BUNDLE, data);
         this.type = type;
-        if (data?.entry) {
-            this.entry = data.entry;
+        if (data) {
+            if (data.identifier) this.identifier = data.identifier;
+            if (data.timestamp) this.timestamp = data.timestamp;
+            if (data.total !== undefined) this.total = data.total;
+            if (data.link) this.link = data.link;
+            if (data.entry) this.entry = data.entry;
+            if (data.signature) this.signature = data.signature;
         }
     }
 
@@ -143,6 +148,14 @@ export class Bundle extends Resource<EResourceType.BUNDLE> implements IBundle {
             ...(this.entry && { entry: this.entry }),
             ...(this.signature && { signature: this.signature })
         };
+    }
+
+    /**
+     * Serializes the bundle by cleaning undefined/null values and empty objects/arrays
+     * @returns {IBundle} The cleaned bundle as a plain object
+     */
+    serialize(): IBundle {
+        return Resource.clean(this.toJSON()) as IBundle;
     }
 }
 
