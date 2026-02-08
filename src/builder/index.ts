@@ -13,6 +13,13 @@ export { Patient } from "../classes/Patient";
 export { Bundle } from "../classes/Bundle";
 export { Observation } from "../classes/Observation";
 
+// Export utility classes
+export { CodeableConcept } from "../classes/CodeableConcept";
+
+// Export mixins
+export { IdentifierMixin } from "../classes/mixins/IdentifierMixin";
+export type { IHasIdentifiers } from "../classes/mixins/IdentifierMixin";
+
 // Re-export types from @fhir-r4/types
 export type {
     IPatient,
