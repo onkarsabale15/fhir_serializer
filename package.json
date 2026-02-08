@@ -1,6 +1,9 @@
 {
-  "name": "@fhir-r4/types",
-  "version": "1.0.0",
+  "name": "@onkarsabale15/fhir-r4",
+  "version": "1.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "TypeScript type definitions for FHIR R4 resources",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
